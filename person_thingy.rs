@@ -9,6 +9,7 @@ static RIGHT_LEG: usize = 8;
 static INVIS: usize = 9;
 static LEFT_LEG: usize = 10;
 static mut PERSON: &str = " 0 \n/|\\\n/ \\";
+// unused variables will be used later when i update this
 trait Stuff {
     fn walk(&self, steps: i32) {
         unsafe {
