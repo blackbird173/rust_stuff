@@ -1,15 +1,13 @@
 use std::thread::sleep;
 use std::time::Duration;
 use std::io;
-static HEAD: usize = 0;
+static HEAD: usize = 1;
 static RIGHT_ARM: usize = 4;
 static TORSO: usize = 5;
 static LEFT_ARM: usize = 6;
 static RIGHT_LEG: usize = 8;
-static INVIS: usize = 9;
 static LEFT_LEG: usize = 10;
 static mut PERSON: &str = " 0 \n/|\\\n/ \\";
-// unused variables will be used later when i update this
 trait Stuff {
     fn walk(&self, steps: i32) {
         unsafe {
@@ -121,6 +119,33 @@ trait Stuff {
             }
         }
     }
+    fn dance(&self, times: i32) {
+        unsafe {
+            let mut x = PERSON.chars().collect::<Vec<char>>();
+            x[RIGHT_ARM] = ' ';
+            x[LEFT_ARM] = ' ';
+            for _ in 0..times {
+                x[HEAD-1] = '/';
+                x[HEAD+1] = '/';
+                x[RIGHT_LEG] = ' ';
+                x[TORSO-1] = '|';
+                x[LEFT_LEG] = '|';
+                println!("{}", x.iter().collect::<String>());
+                sleep(Duration::from_millis(250));
+                std::process::Command::new("clear").status().unwrap();
+                x[TORSO-1] = ' ';
+                x[HEAD-1] = '\\';
+                x[HEAD+1] = '\\';
+                x[RIGHT_LEG] = '|';
+                x[LEFT_LEG] = ' ';
+                x[TORSO+1] = '|';
+                println!("{}", x.iter().collect::<String>());
+                sleep(Duration::from_millis(250));
+                std::process::Command::new("clear").status().unwrap();
+                x[TORSO+1] = ' ';
+            }
+        }
+    }
 }
 impl Stuff for &str {}
 fn main() {
@@ -149,6 +174,12 @@ fn main() {
                     let mut times = String::new();
                     io::stdin().read_line(&mut times).unwrap();
                     PERSON.walk(times.trim().parse::<i32>().unwrap());
+                },
+                "dance" => {
+                    println!("times?");
+                    let mut times = String::new();
+                    io::stdin().read_line(&mut times).unwrap();
+                    PERSON.dance(times.trim().parse::<i32>().unwrap());
                 },
                 _ => {},
             }
