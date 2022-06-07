@@ -1,3 +1,4 @@
+// im well ware the code is a mess with all the static vars and the unsafe stuff i just felt like writing it this way
 use std::thread::sleep;
 use std::time::Duration;
 use std::io;
