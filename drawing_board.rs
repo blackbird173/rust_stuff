@@ -9,10 +9,11 @@ fn main() {
     let mut pos = 112;
     let mut g = grid.chars().collect::<Vec<char>>();
     let mut inp = String::new();
+    g[pos] = '|';
     loop {
         io::stdin().read_line(&mut inp).unwrap();
-        match inp.as_str() {
-            "w\r\n" => {
+        match inp.as_str().trim() {
+            "w" => {
                 if g[pos-90] == '.' || g[pos-90] == '*' {
                     pos -= 90;
                     g[pos] = '|';
@@ -22,7 +23,7 @@ fn main() {
                     z = false;
                 }
             },
-            "s\r\n" => {
+            "s" => {
                 if g[pos+90] == '.' || g[pos+90] == '*' {
                     pos += 90;
                     g[pos] = '|';
@@ -32,7 +33,7 @@ fn main() {
                     z = false;
                 }
             },
-            "a\r\n" => {
+            "a" => {
                 if g[pos-1] == '.' || g[pos-1] == '*' {
                     pos -= 1;
                     g[pos] = '|';
@@ -42,7 +43,7 @@ fn main() {
                     z = false;
                 }
             },
-            "d\r\n" => {
+            "d" => {
                 if g[pos+1] == '.' || g[pos+1] == '*' {
                     pos += 1;
                     g[pos] = '|';
@@ -52,15 +53,15 @@ fn main() {
                     z = false;
                 }
             },
-            "p\r\n" => {
+            "p" => {
                 g[pos] = '*';
                 z = true;
             }
-            "e\r\n" => {
+            "e" => {
                 g[pos] = '.';
                 z = true;
             }
-            "pup\r\n" => {
+            "pup" => {
                 let mut input = String::new();
                 io::stdin().read_line(&mut input).unwrap();
                 let mut p = pos-90;
@@ -71,7 +72,7 @@ fn main() {
                     }
                 }
             }
-            "pdown\r\n" => {
+            "pdown" => {
                 let mut input = String::new();
                 io::stdin().read_line(&mut input).unwrap();
                 let mut p = pos+90;
@@ -82,7 +83,7 @@ fn main() {
                     }
                 }
             }
-            "pleft\r\n" => {
+            "pleft" => {
                 let mut input = String::new();
                 io::stdin().read_line(&mut input).unwrap();
                 let mut p = pos-1;
@@ -93,7 +94,7 @@ fn main() {
                     }
                 }
             }
-            "pright\r\n" => {
+            "pright" => {
                 let mut input = String::new();
                 io::stdin().read_line(&mut input).unwrap();
                 let mut p = pos+1;
@@ -104,7 +105,7 @@ fn main() {
                     }
                 }
             }
-            "eup\r\n" => {
+            "eup" => {
                 let mut input = String::new();
                 io::stdin().read_line(&mut input).unwrap();
                 let mut p = pos-90;
@@ -115,7 +116,7 @@ fn main() {
                     }
                 }
             }
-            "edown\r\n" => {
+            "edown" => {
                 let mut input = String::new();
                 io::stdin().read_line(&mut input).unwrap();
                 let mut p = pos+90;
@@ -126,7 +127,7 @@ fn main() {
                     }
                 }
             }
-            "eleft\r\n" => {
+            "eleft" => {
                 let mut input = String::new();
                 io::stdin().read_line(&mut input).unwrap();
                 let mut p = pos-1;
@@ -137,7 +138,7 @@ fn main() {
                     }
                 }
             }
-            "eright\r\n" => {
+            "eright" => {
                 let mut input = String::new();
                 io::stdin().read_line(&mut input).unwrap();
                 let mut p = pos+1;
