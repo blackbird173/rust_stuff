@@ -36,7 +36,7 @@ fn main() {
             println!("ur prize is a {:?} and {} dollars", Prizes::Car, money);
          }
          let end = "u wont ".to_owned() + money.to_string().as_str() + " and a prize\n";
-         let mut file = OpenOptions::new().create(true).append(true).open("wheel_game.txt").unwrap();
+         let mut file = OpenOptions::new().create(true).append(true).open("wheel_of_food.txt").unwrap();
          file.write_all(end.as_bytes()).unwrap();
          break;
       }
