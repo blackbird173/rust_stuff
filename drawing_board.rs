@@ -9,7 +9,6 @@ fn main() {
     let mut pos = 112;
     let mut g = grid.chars().collect::<Vec<char>>();
     let mut inp = String::new();
-    g[pos] = '|';
     loop {
         io::stdin().read_line(&mut inp).unwrap();
         match inp.as_str().trim() {
