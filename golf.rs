@@ -9,7 +9,7 @@ enum Sponsers {
 enum HowWell {
    VeryGood,
    Good,
-   Ok,
+   Mid,
    Bad,
    VeryBad,
 }
@@ -33,7 +33,7 @@ impl Golfer {
             (&self.score + 1, value)
          },
          2 => {
-            value = HowWell::Ok;
+            value = HowWell::Mid;
             (&self.score + 0, value)
          },
          3 => {
@@ -45,7 +45,7 @@ impl Golfer {
             (&self.score - 3, value)
          },
          _ => {
-            value = HowWell::Ok;
+            value = HowWell::Mid;
             (&self.score + 0, value)
          },
       }
