@@ -13,13 +13,13 @@ enum HowWell {
    Bad,
    VeryBad,
 }
-struct Golfer {
-   name: String,
+struct Golfer<'a> {
+   name: &'a str,
    age: i32,
    score: i32,
    sponser: Sponsers,
 }
-impl Golfer {
+impl Golfer<'static> {
    fn today_score(&self) -> (i32, HowWell) {
       let x: i32 = rand::thread_rng().gen_range(0..=4);
       let value: HowWell;
@@ -52,15 +52,15 @@ impl Golfer {
    }
 }
 fn main() {
-   let v = vec![Golfer{name: String::from("jim"), age: 19, score: 67, sponser: Sponsers::Micorsoft}, Golfer{name: String::from("bob"), age: 20, score: 65, sponser: Sponsers::Apple}, Golfer{name: String::from("joe"), age: 17, score: 69, sponser: Sponsers::Mozilla}, Golfer{name: String::from("rob"), age: 16, score: 65, sponser: Sponsers::Github}, Golfer{name: String::from("mark"), age: 16, score: 69, sponser: Sponsers::Google}];
+   let v = vec![Golfer{name: "jim", age: 19, score: 67, sponser: Sponsers::Micorsoft}, Golfer{name: "bob", age: 20, score: 65, sponser: Sponsers::Apple}, Golfer{name: "joe", age: 17, score: 69, sponser: Sponsers::Mozilla}, Golfer{name: "rob", age: 16, score: 65, sponser: Sponsers::Github}, Golfer{name: "mark", age: 16, score: 69, sponser: Sponsers::Google}];
    let scores = v.iter().map(|x| x.today_score()).collect::<Vec<(i32, HowWell)>>();
-   let mut top_scores: Vec<(i32, String)> = vec![(scores[0].0, v[0].name.clone())];
+   let mut top_scores: Vec<(i32, &str)> = vec![(scores[0].0, v[0].name)];
    for i in 1..scores.len() {
       if scores[i].0 < top_scores[0].0 {
          top_scores = vec![];
-         top_scores.push((scores[i].0, v[i].name.clone()));
+         top_scores.push((scores[i].0, v[i].name));
       } else if scores[i].0 == top_scores[0].0 {
-         top_scores.push((scores[i].0, v[i].name.clone()));
+         top_scores.push((scores[i].0, v[i].name));
       }
    }
    println!("{:?}", top_scores);
